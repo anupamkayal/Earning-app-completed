@@ -1,1 +1,0 @@
-# Earning-app-completed
