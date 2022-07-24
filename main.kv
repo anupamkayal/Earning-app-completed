@@ -1,0 +1,1454 @@
+#:import webbrowser webbrowser
+#:import MagicBehavior kivymd.uix.behaviors.MagicBehavior
+#:import  SlideTransition  kivy.uix.screenmanager.SlideTransition
+
+ScreenManagerClass:
+	transition:SlideTransition()
+	wallet_Id:wallet_id
+	Registration_Screen:
+	Login_Screen:
+	Forgot_Screen:
+	Main_Screen:
+	Wallet_Screen:
+		id:wallet_id
+	Profile_Screen:
+	Password_Screen:
+	Contact_Screen:
+	About_Screen:
+	Reffer_Screen:
+	
+	
+
+	
+<MagicButton@MagicBehavior+MDFillRoundFlatButton>:
+<MagicCard@MagicBehavior+MDCard>:
+
+<Check@MDCheckbox>:
+    group: 'group'
+    size_hint: None, None
+    size: dp(48), dp(48)
+    				
+<Content>:
+	orientation:"horizontal"
+	spacing:50	
+	MDSpinner:
+		id:spinner
+		size_hint:None,None
+		size:dp(46),dp(46)
+		pos_hint:{'center_x':0.1,'top':1.3}
+		active:True
+	MDLabel:
+		text:'Processing...'
+		pos_hint:{'center_x':1.8,'top':1.3}
+
+<Content1>:
+	orientation:"horizontal"
+	spacing:50	
+	MDSpinner:
+		id:spinner
+		size_hint:None,None
+		size:dp(46),dp(46)
+		pos_hint:{'center_x':0.1,'top':1.3}
+		active:True
+	MDLabel:
+		text:'Sending...'
+		pos_hint:{'center_x':1.8,'top':1.3}
+
+				
+		
+<Registration_Screen>:
+	name:'registration_screen'
+	on_enter:
+		root.anim4(card)
+		root.anim(first_layout)
+		root.anim1(second_layout)
+		root.anim2(iconbtn)
+		root.anim3(label)
+		root.keyboard()
+		
+		
+	MDFloatLayout:	
+		MDFloatLayout:
+			id:first_layout
+			size_hint_y:0.6
+			pos_hint:{'center_y':1.33}
+			radius:[0,0,0,40]
+			canvas:
+				Color:
+					rgba:(180.0/255.0,104.0/255.0,238.0/255.0,1)
+				Rectangle:
+					size:self.size
+					pos:self.pos
+
+		MDFloatLayout:
+			id:second_layout
+			size_hint:1.5,0.6
+			
+			pos_hint:{'center_y':1.28,'center_x':0.5}
+			radius:[0,0,0,40]
+			canvas:
+				Color:
+					rgba:(180.0/255.0,104.0/255.0,238.0/255.0,1)
+				Ellipse:
+					size:self.size
+					pos:self.pos
+		MDIconButton:
+			id:iconbtn
+			icon:'account-circle'
+			pos_hint:{'center_x':0.5,'center_y':0.85}
+			user_font_size:'60sp'
+			theme_text_color:'Custom'
+			text_color:1,1,1,1
+		MDLabel:
+			id:label
+			text:'Registration'
+			font_style:'H5'	
+			halign:'center'
+			markup:True
+			theme_text_color:'Custom'
+			text_color:1,1,1,1
+			pos_hint:{'center_y':0.86}
+			opacity:0
+		MDCard:			
+			id:card
+			orientation: "vertical"
+			size_hint_x:0.9
+			pos_hint:{'center_x':0.5,'center_y':0.28}
+			radius:[dp(40),dp(40),40,40]	
+			elevation:15
+			opacity:0
+			MDFloatLayout:				
+				MDTextField:
+					id:name
+	    			hint_text: "Enter Name  "
+	    			mode: "rectangle"
+	    			size_hint_x:0.8
+	    			pos_hint:{'center_y':0.9,'center_x':0.5}
+	    			radius:[20,20,20,20]	    	
+	    			color_mode: 'custom'
+	    			multiline: False	    			
+	    			line_anim:True    
+       			 line_color_focus: 0,0,0,1 if app.theme_cls.theme_style=='Light' else 1,1,1,1                      			
+        	
+	    		MDTextField:
+	    			id:number
+	    			hint_text: "Enter  Number(optional)"
+	    			mode: "rectangle"
+	    			size_hint_x:0.8
+	    			pos_hint:{'center_y':0.8,'center_x':0.5}
+	    			radius:[20,20,20,20]	  
+	    			multiline: False  	    	
+	    			line_anim:True    	
+	    			color_mode: 'custom'
+	    			input_filter: "int"
+        			line_color_focus: 0,0,0,1 if app.theme_cls.theme_style=='Light' else 1,1,1,1                      			
+        	
+				MDTextField:
+					id:email
+	    			hint_text: "Enter  Email  "
+	    			mode: "rectangle"
+	    			size_hint_x:0.8
+	    			pos_hint:{'center_y':0.7,'center_x':0.5}
+	    			radius:[20,20,20,20]	   
+	    			multiline: False	    	
+	    			line_anim:True    		
+	    			color_mode: 'custom'
+        			line_color_focus: 0,0,0,1 if app.theme_cls.theme_style=='Light' else 1,1,1,1                      			
+        	
+				MDTextField:
+					id:password_id
+	    			hint_text: "Enter  Password "
+	    			mode: "rectangle"
+	    			size_hint_x:0.8
+	    			pos_hint:{'center_y':0.6,'center_x':0.5}
+	    			radius:[20,20,20,20]	   
+	    			multiline: False		    			
+	    			line_anim:True    
+	    			password:True
+	    			color_mode: 'custom'
+        			line_color_focus: 0,0,0,1 if app.theme_cls.theme_style=='Light' else 1,1,1,1                      			
+        		IconToggleButton:
+        			id:toggle_btn
+					icon:{'normal':'eye-off','down':'eye'}[self.state]						
+					on_state:root.show_password()
+					pos_hint:{'center_x':0.88,'center_y':0.59}
+        			
+        			
+				MDTextField:
+					id:reffer
+	    			hint_text: "Referral Code(optional)"
+	    			mode: "rectangle"
+	    			size_hint_x:0.8
+	    			pos_hint:{'center_y':0.5,'center_x':0.5}
+	    			radius:[20,20,20,20]	   
+	    			multiline: False		    			
+	    			current_hint_text_color: 190.0/255.0, 190.0/255.0, 190.0/255.0,1    
+	    			color_mode: 'custom'
+        			line_color_focus: 0,0,0,1 if app.theme_cls.theme_style=='Light' else 1,1,1,1                      			
+        			line_anim:True       
+				MagicButton:
+					markup:True
+					text: f'{" "*int(dp(8))}[b]Sign Up[/b]{" "*int(dp(8))}'
+					pos_hint:{'center_x':0.5,'center_y':0.4}     															
+					font_size:"10sp"
+					on_press:self.shrink()
+					md_bg_color:(180.0/255.0,104.0/255.0,238.0/255.0,1)
+					on_release:root.loading()
+				MDLabel:
+					text:f'{" "*int(dp(4))}--- OR ---'
+					font_style:'Body2'
+					pos_hint:{'center_y':0.32}
+					halign:'center'
+					theme_text_color:'Custom'
+					text_color:(0, 191.0/255.0, 1,1)
+				MDLabel:
+					text:'Already Have Account?'
+					font_style:'Subtitle1'
+					pos_hint:{'center_y':0.27}
+					halign:'center'
+					theme_text_color:'Custom'
+					text_color:(0, 0,0,1) if app.theme_cls.theme_style=='Light' else (1,1,1,1)
+				MDFlatButton:
+				    text: "Login In"
+				    theme_text_color: "Custom"
+				    text_color: (0, 0, 1, 1) if app.theme_cls.theme_style=='Light' else  (254.0/255.0,97.0/255.0,44.0/255.0,1) 
+				    pos_hint:{'center_x':0.8,'center_y':0.27}
+				    on_release:root.manager.current='login_screen'
+					
+					
+<Login_Screen>:
+	name:'login_screen'
+
+	MDFloatLayout:	
+		MDFloatLayout:
+			id:second_layout
+			size_hint_y:0.6			
+			pos_hint:{'center_y':1}
+			radius:[0,0,0,40]
+			canvas:
+				Color:
+					rgba:(180.0/255.0,104.0/255.0,238.0/255.0,1)
+				Ellipse:
+					size:self.size
+					pos:self.pos
+		MDIconButton:
+			id:iconbtn
+			icon:'shield-account'
+			pos_hint:{'center_x':0.5,'center_y':0.9}
+			user_font_size:'60sp'
+			theme_text_color:'Custom'
+			text_color:1,1,1,1
+		MDLabel:
+			id:label
+			markup:True
+			text:'[b]Login[/b]'
+			font_style:'H5'	
+			halign:'center'
+			markup:True
+			theme_text_color:'Custom'
+			text_color:1,1,1,1
+			pos_hint:{'center_y':0.8}
+			opacity:1					
+        				
+		MDCard:			
+			id:card1
+			orientation: "vertical"
+			size_hint:0.9,0.65
+			pos_hint:{'center_x':0.5,'center_y':0.34}
+			radius:[dp(40),dp(40),40,40]	
+			elevation:15
+			opacity:1
+			MDFloatLayout:						
+				MDTextField:
+					id:login_email
+	    			hint_text: "Enter Email  "
+	    			mode: "rectangle"
+	    			size_hint_x:0.8
+	    			pos_hint:{'center_y':0.84,'center_x':0.5}
+	    			radius:[20,20,20,20]	  
+	    			current_hint_text_color: 190.0/255.0, 190.0/255.0, 190.0/255.0,1    	    			 	
+	    			color_mode: 'custom'
+	    			multiline: False	    			
+	    			line_anim:True    
+       			 line_color_focus: 0,0,0,1 if app.theme_cls.theme_style=='Light' else 1,1,1,1                      			
+        	
+	    		MDTextField:
+	    			id:login_password
+	    			hint_text: "Password  "
+	    			mode: "rectangle"
+	    			size_hint_x:0.8
+	    			pos_hint:{'center_y':0.67,'center_x':0.5}
+	    			radius:[20,20,20,20]	  
+	    			multiline: False  	    	
+	    			line_anim:True    
+	    			password:True
+	    			current_hint_text_color: 190.0/255.0, 190.0/255.0, 190.0/255.0,1    	    				
+	    			color_mode: 'custom'
+        			line_color_focus: 0,0,0,1 if app.theme_cls.theme_style=='Light' else 1,1,1,1     
+				IconToggleButton:
+        			id:toggle_btn
+					icon:{'normal':'eye-off','down':'eye'}[self.state]						
+					on_state:root.show_password()
+					pos_hint:{'center_x':0.88,'center_y':0.66}
+        			      			                 			      			                 			
+				MagicButton:
+					markup:True
+					text: f'{" "*int(dp(8))}[b]Login[/b]{" "*int(dp(8))}'
+					pos_hint:{'center_x':0.5,'center_y':0.48}     															
+					font_size:"10sp"
+					md_bg_color:(180.0/255.0,104.0/255.0,238.0/255.0,1)        		
+					size_hint_y:0.15
+					on_release:root.login()
+				MDFlatButton:
+					markup:True
+				    text: "[b]Forgot Password[/b]"
+				    theme_text_color: "Custom"
+				    text_color: (250.0/255.0, 26.0/255.0, 0, 1)
+				    pos_hint:{'center_x':0.5,'center_y':0.33}
+				    on_release:root.manager.current='forgot_screen'
+					
+				MDLabel:
+					text:f'{" "*int(dp(4))}--- OR ---'
+					font_style:'Body2'
+					pos_hint:{'center_y':0.25}
+					halign:'center'
+					theme_text_color:'Custom'
+					text_color:(0, 0,0,1)		
+				MDRoundFlatButton:
+					markup:True
+				    text: f'{" "*int(dp(7))}[b]Sign Up[/b]{" "*int(dp(7))}'					
+				    text_color: (180.0/255.0,104.0/255.0,238.0/255.0,1)       
+				    line_color: (180.0/255.0,104.0/255.0,238.0/255.0,1)    
+				    size_hint_y:0.13
+				    font_size:"10sp"
+				    pos_hint:{'center_x':0.5,'center_y':0.15}				   
+				    on_release:root.manager.current='registration_screen'
+				    		         		
+<Forgot_Screen>:
+	name:'forgot_screen'	
+	on_enter:
+		root.anim(first_layout)
+		root.anim1(second_layout)
+		root.anim2(label)
+		root.keyboard()
+	MDFloatLayout:	
+		MDFloatLayout:
+			id:first_layout
+			size_hint_y:0.6
+			pos_hint:{'center_y':1.8}
+			radius:[0,0,0,40]
+			canvas:
+				Color:
+					rgba:(180.0/255.0,104.0/255.0,238.0/255.0,1)
+				Rectangle:
+					size:self.size
+					pos:self.pos
+
+		MDFloatLayout:
+			id:second_layout
+			size_hint_y:0.6			
+			pos_hint:{'center_y':1.8}
+			radius:[0,0,0,40]
+			canvas:
+				Color:
+					rgba:(180.0/255.0,104.0/255.0,238.0/255.0,1)
+				Ellipse:
+					size:self.size
+					pos:self.pos
+					
+		MDLabel:
+			id:label
+			markup:True
+			text:'[b]Forgot Password[/b]'
+			font_style:'H5'	
+			halign:'center'
+			markup:True
+			theme_text_color:'Custom'
+			text_color:1,1,1,1
+			pos_hint:{'center_y':0.85}
+			opacity:0
+		MDCard:			
+			id:card1
+			orientation: "vertical"
+			size_hint:0.9,0.4
+			pos_hint:{'center_x':0.5,'center_y':0.4}
+			radius:[dp(40),dp(40),40,40]	
+			elevation:15
+			opacity:1			
+			MDFloatLayout:	
+			
+				MDLabel:
+					text:f'{" "*int(dp(2))}Enter your registered email id & we will  send you a password reset email'
+					font_style:'Subtitle1'
+					pos_hint:{'center_y':0.8}
+					halign:'center'
+					theme_text_color:'Custom'
+					text_color:(0, 0,0,1) if app.theme_cls.theme_style=='Light' else (1,1,1,1)			
+				MDTextField:
+					id:reset_passemail
+		    		hint_text: "Enter Email  "
+		    		mode: "rectangle"
+		    		size_hint_x:0.85
+		    		pos_hint:{'center_x':0.5,'center_y':0.6}
+		    		radius:[20,20,20,20]
+		    		current_hint_text_color: 190.0/255.0, 190.0/255.0, 190.0/255.0,1    	    				    	
+		    		color_mode: 'custom'
+		    		multiline: False	    			
+		    		line_anim:True    
+	       		 line_color_focus: (213.0/255.0,152.0/255.0,250.0/255.0,255.0/255.0)              				        							    							    						
+				MagicButton:
+					markup:True
+					text: f'{" "*int(dp(4))}[b]Reset Password[/b]{" "*int(dp(4))}'     															
+					font_size:"10sp"
+					md_bg_color:(180.0/255.0,104.0/255.0,238.0/255.0,1)        		
+					size_hint_y:0.2   			
+					pos_hint:{'center_x':0.5,'center_y':0.3}	
+					on_release:root.loading()		
+        	
+<Main_Screen>:
+	name:'main_screen'
+	on_enter:
+		root.continuous_func()
+		app.ads.request_interstitial()  # Intersitial ads is loaded in memory		
+		app.ads.show_interstitial()
+	NavigationLayout:
+		ScreenManager:
+			MDScreen:
+				MDBoxLayout:
+					orientation:'vertical'
+					MDToolbar:
+						title:'Earn Coin'
+						md_bg_color:(171.0/255.0,100.0/255.0,233.0/255.0,255.0/255.0)
+
+						left_action_items:[["menu",lambda x: root.nav_draw()]]
+						right_action_items:[['theme-light-dark',lambda x:app.change_theme()],['share-variant',lambda x: root.share_func()]]
+						
+						elevation:10
+					MDFloatLayout:
+						ScrollView:
+							always_overscroll:True
+							scroll_to:True
+							MDGridLayout:
+								cols:2
+								adaptive_height:True
+								padding:dp(8),dp(7)
+								spacing:dp(13)
+								MagicCard:
+									id:img_card
+									
+									border_radius: 20
+									radius: [15]
+									ripple_behavior: True
+									orientation: "vertical"
+									size_hint: None, None
+									size: "166dp", "240dp"																				
+									elevation:15
+									on_press:self.shrink()
+									on_release:root.threading_func()
+									opacity:1
+									BoxLayout:
+										orientation:'vertical'
+										FitImage:
+									        id: bg_image
+									        source: 'Earnmoney.jpg'
+									        size_hint_y: 0.9
+									        pos_hint: {"top": 1}
+									        radius: 17, 17,17,17
+									    MDLabel:
+									    	markup:True
+									    	text:'[b]Short Video[/b]'
+									    	halign:'center'
+									    	font_style:'Subtitle1'
+									    	size_hint_y:0.1
+									    	theme_text_color:'Custom'
+									    	text_color:(124.0/255.0,79.0/255.0,202.0/255.0,1)
+									 
+									
+										
+								MagicCard:
+									id:img_card									
+									border_radius: 20
+									radius: [15]
+									ripple_behavior: True
+									orientation: "vertical"
+									size_hint: None, None
+									size: "166dp", "240dp"																				
+									elevation:15
+									on_press:self.shrink()
+									on_release:app.ads.show_rewarded_ad()
+									opacity:1
+									BoxLayout:
+										orientation:'vertical'
+										FitImage:
+									        id: bg_image
+									        source: 'Video_ad.jpg'
+									        size_hint_y: 0.9
+									        pos_hint: {"top": 1}
+									        radius: 17, 17,17,17
+									    MDLabel:
+									    	markup:True
+									    	text:'[b]Watch Video[/b]'
+									    	halign:'center'
+									    	font_style:'Subtitle1'
+									    	size_hint_y:0.1
+									    	theme_text_color:'Custom'
+									    	text_color:(124.0/255.0,79.0/255.0,202.0/255.0,1)
+									 
+								MagicCard:
+									id:img_card
+																		
+									border_radius: 20
+									radius: [15]
+									ripple_behavior: True
+									orientation: "vertical"
+									size_hint: None, None
+									size: "166dp", "240dp"																				
+									elevation:15
+									on_press:self.shrink()
+									on_release:
+										root.manager.transition.direction='left'
+										root.manager.current='wallet_screen'
+									opacity:1
+									BoxLayout:
+										orientation:'vertical'
+										FitImage:
+									        id: bg_image
+									        source: 'wallet_update.jpg'
+									        size_hint_y: 0.9
+									        pos_hint: {"top": 1}
+									        radius: 17, 17,17,17
+									    MDLabel:
+									    	markup:True
+									    	text:'[b]Wallet[/b]'
+									    	halign:'center'
+									    	font_style:'Subtitle1'
+									    	size_hint_y:0.1
+									    	theme_text_color:'Custom'
+									    	text_color:(124.0/255.0,79.0/255.0,202.0/255.0,1)
+									 
+									
+								MagicCard:
+									id:img_card
+									
+									border_radius: 20
+									radius: [15]
+									ripple_behavior: True
+									orientation: "vertical"
+									size_hint: None, None
+									size: "166dp", "240dp"																				
+									elevation:15
+									on_press:self.shrink()
+									on_release:
+										root.manager.transition.direction='left'
+										root.manager.current='reffer_screen'
+									opacity:1	
+									BoxLayout:
+										orientation:'vertical'
+										FitImage:
+									        id: bg_image
+									        source: 'reffer_img.png'
+									        size_hint_y: 0.9
+									        pos_hint: {"top": 1}
+									        radius: 17, 17,17,17
+									    MDLabel:
+									    	markup:True
+									    	text:'[b]Reffer & Win[/b]'
+									    	halign:'center'
+									    	font_style:'Subtitle1'
+									    	size_hint_y:0.1
+									    	theme_text_color:'Custom'
+									    	text_color:(124.0/255.0,79.0/255.0,202.0/255.0,1)
+									 
+								
+								
+								
+								
+		MDNavigationDrawer:
+			id:nav_draw	
+	
+			BoxLayout:
+				orientation:'vertical'
+				padding:'8dp'
+				spacing:'8dp'
+				AnchorLayout:
+					anchor_x:'center'
+					size_hint_y:None
+					height:avatar.height																						
+					FitImage:
+						id:avatar
+						size_hint:None,None
+						size:'125dp','125dp'
+						radius: 360, 360,360,360
+						source: 'upload.png'				
+					
+				     
+				MDLabel:
+					id:navbar_label
+					text: " "
+			        font_style: "Button"
+			        halign:'center'
+			        size_hint_y: None
+			        height: self.texture_size[1]
+
+			    MDLabel:
+			    	id:nav_email
+			        text: " "
+			        font_style: "Caption"
+			        halign:'center'
+			        size_hint_y: None
+			        height: self.texture_size[1]
+			    MDSeparator:
+            		height: "1dp"
+			    				        
+				ScrollView:
+					MDList:	
+						OneLineIconListItem:	
+							on_release:root.nav_home()					
+							text:'Home'
+							divider:None
+							theme_text_color:'Custom'
+							text_color:110.0/255.0, 74.0/255.0, 194.0/255.0, 1 
+							IconLeftWidget:
+								icon:'home'
+								theme_text_color: "Custom"
+    							text_color: 110.0/255.0, 74.0/255.0, 194.0/255.0, 1       
+					
+						OneLineIconListItem:			
+							on_release:
+								root.manager.transition.direction='left'
+								root.manager.current='wallet_screen'		
+							text:'My Wallet'
+							divider:None
+							theme_text_color:'Custom'
+							text_color:110.0/255.0, 74.0/255.0, 194.0/255.0, 1 
+							IconLeftWidget:
+								icon:'wallet'
+								theme_text_color: "Custom"
+    							text_color: 110.0/255.0, 74.0/255.0, 194.0/255.0, 1 
+								on_release:
+									root.manager.transition.direction='left'
+									root.manager.current='wallet_screen'
+						OneLineIconListItem:							
+							on_release:
+								root.manager.transition.direction='left'
+								root.manager.current='profile_screen'				
+							text:'Profile'
+							divider:None
+							theme_text_color:'Custom'
+							text_color:110.0/255.0, 74.0/255.0, 194.0/255.0, 1 
+							IconLeftWidget:
+								icon:'account-supervisor-circle'
+								theme_text_color: "Custom"
+    							text_color: 110.0/255.0, 74.0/255.0, 194.0/255.0, 1 
+								on_release:
+									root.manager.transition.direction='left'
+									root.manager.current='profile_screen'
+						OneLineIconListItem:		
+							on_release:
+								root.manager.transition.direction='left'
+								root.manager.current='password_screen'												
+							text:'Change Password'
+							divider:None
+							theme_text_color:'Custom'
+							text_color:110.0/255.0, 74.0/255.0, 194.0/255.0, 1 
+							IconLeftWidget:
+								icon:'security-network'
+								theme_text_color: "Custom"
+    							text_color: 110.0/255.0, 74.0/255.0, 194.0/255.0, 1 
+								on_release:
+									root.manager.transition.direction='left'
+									root.manager.current='password_screen'
+													          				
+						OneLineIconListItem:	
+							on_release:
+								root.manager.transition.direction='left'
+								root.manager.current='contact_screen'					
+							text:'Contact Us'
+							divider:None
+							theme_text_color:'Custom'
+							text_color:110.0/255.0, 74.0/255.0, 194.0/255.0, 1 
+							IconLeftWidget:
+								icon:'contact-mail'
+								theme_text_color: "Custom"
+    							text_color: 110.0/255.0, 74.0/255.0, 194.0/255.0, 1 
+								on_release:
+									root.manager.transition.direction='left'
+									root.manager.current='contact_screen'
+																									
+						OneLineIconListItem:		
+							on_release:
+								root.manager.transition.direction='left'
+								root.manager.current='about_screen'				
+							text:'About Us'
+							divider:None
+							theme_text_color:'Custom'
+							text_color:110.0/255.0, 74.0/255.0, 194.0/255.0, 1 
+							IconLeftWidget:
+								icon:'account-group'
+								theme_text_color: "Custom"
+    							text_color: 110.0/255.0, 74.0/255.0, 194.0/255.0, 1 
+								on_release:
+									root.manager.transition.direction='left'
+									root.manager.current='about_screen'		
+							
+						OneLineIconListItem:	
+							on_press:webbrowser.open("https://policies.google.com/privacy")		
+							text:'Privacy Policy'
+							divider:None
+							theme_text_color:'Custom'
+							text_color:110.0/255.0, 74.0/255.0, 194.0/255.0, 1 
+							IconLeftWidget:
+								icon:'information'
+								theme_text_color: "Custom"
+    							text_color: 110.0/255.0, 74.0/255.0, 194.0/255.0, 1 
+								on_release:root.privacy_policy()	
+																										
+						OneLineIconListItem:		
+							on_release:root.logout()				
+							text:'Logout'							
+							divider:None
+							theme_text_color:'Custom'
+							text_color:110.0/255.0, 74.0/255.0, 194.0/255.0, 1 
+							IconLeftWidget:
+								icon:'location-exit'
+								theme_text_color: "Custom"
+    							text_color: 110.0/255.0, 74.0/255.0, 194.0/255.0, 1 
+								on_release:root.logout()	
+																										
+<Wallet_Screen>:
+	name:'wallet_screen'
+	coin_Num:coin_num
+	on_enter:
+		root.keyboard()
+		root.continuous_func()		
+	MDFloatLayout:		
+		MDCard:
+			border_radius: 10
+			radius: [10]
+			ripple_behavior: False
+			orientation: "vertical"
+			size_hint: None, None
+			size: "360dp", "170dp"																				
+			elevation:0
+			opacity:1	
+			pos_hint:{'center_y':0.9}
+		
+			BoxLayout:
+				orientation:'vertical'
+				FitImage:
+					id: bg_image
+					source: 'reward.jpg'
+					size_hint_y: 0.9
+					pos_hint: {"top": 1}
+					radius: 17, 17,17,17
+		MDFloatLayout:
+			MDFloatingActionButton:				
+				icon:'keyboard-backspace'
+				pos_hint:{'x':0,'center_y':0.97}
+				md_bg_color:(79.0/255.0, 121.0/255.0, 227.0/255.0, 1)
+				user_font_size: "19sp"	
+				elevation_normal: 0
+				opacity:1
+				theme_text_color: "Custom"
+    			text_color: 1,1,1,1
+				on_press:root.manager.current='main_screen'
+			MDLabel:
+				markup:True
+				text:'[b]My Wallet[/b]'
+				pos_hint:{'x':0.15,'center_y':0.97}
+				theme_text_color:'Custom'
+				text_color:1,1,1,1
+			MDCard:
+				border_radius: 10
+				radius: [10]
+				ripple_behavior: False
+				orientation: "vertical"
+				size_hint: None, None
+				size: "120dp", "100dp"																				
+				elevation:0
+				opacity:1	
+				pos_hint:{'center_x':0.2,'center_y':0.87}
+				MDFloatLayout:
+					MDLabel:
+						text:'Total Available Points'
+						font_style:'Caption'
+						pos_hint:{'center_x':0.5,'center_y':0.8}
+						
+					MDIconButton:
+						icon:'Coin.png'
+						user_font_size: "8sp"	
+						pos_hint:{'center_x':0.2,'center_y':0.5}
+					MDLabel:
+						id:coin_num
+						markup:True
+				        text:'0'
+						pos_hint:{'center_y':0.5}
+						bold:True
+						halign:'right' #if len(coin_num.text)>4 else ('center')
+					MDLabel:
+						text:'Minimum Redeem: 500'
+						halign:'right'
+						pos_hint:{'center_y':0.26}
+						font_style:'Overline'
+					MDLabel:
+						text:'    100 Points = 10 INR'
+						halign:'right'
+						pos_hint:{'center_y':0.1}
+						font_style:'Overline'
+					
+					
+			
+		MDCard:
+			border_radius: 10
+			radius: [10]
+			ripple_behavior: False
+			orientation: "vertical"
+			size_hint: None, None
+			size: "335dp", "230dp"																				
+			elevation:0
+			opacity:1	
+			pos_hint:{'center_x':0.5,'center_y':0.58}
+			MDFloatLayout:			
+				MDLabel:
+					id: payment_label
+					markup:True
+					text:f'{" "*int(dp(3))}[b]Select Payment Method[/b]'
+					halign:'center'
+					pos_hint:{'center_y':0.86}		
+				Check:
+					id:paytm_check
+					active:False
+					on_active:root.change_hint_text(*args)
+					pos_hint:{'center_x':0.1,'center_y':0.66}
+																									
+				FitImage:
+					id:avatar
+					size_hint:None,None
+					size:'96dp','96dp'			
+					source: 'Paytm.png'			
+					pos_hint:{'center_x':0.5,'center_y':0.68}
+				Check:
+					id:gpay_check
+					active:False
+					on_active:root.change_hint_text(*args)				
+					pos_hint:{'center_x':0.1,'center_y':0.4}
+																									
+				FitImage:
+					id:avatar
+					size_hint:None,None
+					size:'56dp','56dp'			
+					source:'gpay.png'		
+					pos_hint:{'center_x':0.5,'center_y':0.42}
+				Check:
+					id:upi_check
+					active:False
+					on_active:root.change_hint_text(*args)				
+					pos_hint:{'center_x':0.1,'center_y':0.17}
+																									
+				FitImage:
+					id:avatar
+					size_hint:None,None
+					size:'146dp','56dp'			
+					source:'Upi.png'		
+					pos_hint:{'center_x':0.5,'center_y':0.1}
+
+		MDCard:
+			border_radius: 10
+			radius: [10]
+			ripple_behavior: False
+			orientation: "vertical"
+			size_hint: None, None
+			size: "335dp", "250dp"																				
+			elevation:0
+			opacity:1	
+			pos_hint:{'center_x':0.5,'center_y':0.2}
+			MDFloatLayout:	
+				MDLabel:
+					markup:True
+					text:'[b]Enter Payment Details[/b]'
+					halign:'center'
+					pos_hint:{'center_y':0.9}
+				MDLabel:
+					markup:True
+					text:"Phone Number Can't be  change it leter"
+					font_style:'Caption'
+					halign:'center'
+					theme_text_color:'Custom'
+					text_color:1,0,0,1
+					pos_hint:{'center_y':0.83}
+				MDTextField:	
+					id:withdraw_num					
+	    			hint_text: "Enter Paytm Number  "	    		
+	    			mode: "rectangle"
+	    			size_hint_x:0.85
+	    			pos_hint:{'center_y':0.7,'center_x':0.5}
+	    			radius:[20,20,20,20]	  
+	    			current_hint_text_color: 190.0/255.0, 190.0/255.0, 190.0/255.0,1    	    			 	
+	    			color_mode: 'custom'
+	    			multiline: False	    			
+	    			line_anim:True    	   
+	    			input_filter:'int'
+	    			paste:True
+	    	
+	    			#on_text:if len(self.text.strip()) >= 10: self.readonly = True
+       			 line_color_focus: 0,0,0,1 if app.theme_cls.theme_style=='Light' else 1,1,1,1                      			
+        		MDTextField:	
+        			id:points					
+	    			hint_text: "Enter Points  "
+	    			mode: "rectangle"
+	    			size_hint_x:0.85
+	    			pos_hint:{'center_y':0.44,'center_x':0.5}
+	    			radius:[20,20,20,20]	  
+	    			current_hint_text_color: 190.0/255.0, 190.0/255.0, 190.0/255.0,1    	    			 	
+	    			color_mode: 'custom'
+	    			multiline: False	    			
+	    			line_anim:True 
+	    			input_filter:'int'  
+	    			paste:True
+       			 line_color_focus: 0,0,0,1 if app.theme_cls.theme_style=='Light' else 1,1,1,1                      			
+        		MagicButton:
+					markup:True
+					text: f'{" "*int(dp(4))}[b]Submit[/b]{" "*int(dp(4))}'     															
+					font_size:"10sp"
+					md_bg_color:(180.0/255.0,104.0/255.0,238.0/255.0,1)        		
+					size_hint_y:0.18			
+					pos_hint:{'center_x':0.5,'center_y':0.15}	
+					on_release:root.process_to_pay()				
+  
+								
+													
+																				
+			
+<Profile_Screen>:
+	name:'profile_screen'	
+	on_enter:
+		root.keyboard()
+		root.anim1(second_layout)
+		root.anim2(label)
+		root.anim3(actionbtn)
+	
+	MDFloatLayout:		
+		MDFloatLayout:
+			id:second_layout
+			size_hint_y:0.6			
+			pos_hint:{'center_y':1.8}
+			radius:[0,0,0,40]
+			canvas:
+				Color:
+					rgba:(180.0/255.0,104.0/255.0,238.0/255.0,1)
+				Ellipse:
+					size:self.size
+					pos:self.pos
+		MDFloatingActionButton:
+			id:actionbtn
+			icon:'keyboard-backspace'
+			pos_hint:{'x':0,'center_y':0.96}
+			md_bg_color:(180.0/255.0,104.0/255.0,238.0/255.0,1)
+			user_font_size: "23sp"	
+			elevation_normal: 0
+			opacity:0
+			on_press:root.manager.current='main_screen'	
+		MDLabel:
+			id:label
+			markup:True
+			text:'[b]Profile[/b]'
+			font_style:'H5'	
+			halign:'center'
+			markup:True
+			theme_text_color:'Custom'
+			text_color:1,1,1,1
+			pos_hint:{'center_y':0.85}
+			opacity:0
+		MDCard:						
+			orientation: "vertical"
+			size_hint:0.9,0.6
+			pos_hint:{'center_x':0.5,'center_y':0.38}
+			radius:[dp(40),dp(40),40,40]	
+			elevation:15
+			opacity:1
+			border_radius: 20			
+			MDFloatLayout:
+						
+				FitImage:
+					id:profile_avatar
+					size_hint:None,None
+					size:'80dp','80dp'
+					radius: 360, 360,360,360
+					source:'upload.png'	
+					nocache: True				
+					pos_hint:{'center_x':0.5,'center_y':0.89}	
+					opacity:1		                     
+				MDIconButton:
+					id:icon_btn																				
+					icon:""			
+					user_font_size:'40sp'
+					pos_hint:{'center_x':0.5,'center_y':0.89}
+					opacity:1
+					on_release:root.func()
+						
+				MDTextField:
+					id:name_field
+		    		hint_text: "Enter Name  "
+		    		mode: "rectangle"
+		    		size_hint_x:0.85
+		    		pos_hint:{'center_x':0.5,'center_y':0.73}
+		    		line_color_normal:0,0,0,1    				    		
+		    		current_hint_text_color: 190.0/255.0, 190.0/255.0, 190.0/255.0,1    	    				    	
+		    		color_mode: 'custom'
+		    		multiline: False			
+		    		line_anim:True    
+	       		 line_color_focus: (213.0/255.0,152.0/255.0,250.0/255.0,255.0/255.0) if name_field.focus==True else (0,0,0,0.4)	        							    							    						
+				
+	       	 MDTextField:
+					id:number_field
+		    		hint_text: "Enter Number  "
+		    		mode: "rectangle"		    		
+		    		size_hint_x:0.85
+		    		pos_hint:{'center_x':0.5,'center_y':0.56}
+		    		line_color_normal:0,0,0,1    				    		
+		    		current_hint_text_color: 190.0/255.0, 190.0/255.0, 190.0/255.0,1    	    				    	
+		    		color_mode: 'custom'
+		    		multiline: False			
+		    		line_anim:True    
+	       		 line_color_focus: (213.0/255.0,152.0/255.0,250.0/255.0,255.0/255.0) if number_field.focus==True else (0,0,0,0.4)
+	       	 MDLabel:
+	       	 	text:f"{' '*int(dp(4))}You can't change email"
+	       	 	font_style:'Subtitle1'
+	       	 	theme_text_color:'Custom'
+	       	 	text_color:1,0,0,1	      
+	       		 halign:'left'
+	       	 	pos_hint:{'center_y':0.45}						    							    						
+				MDTextField:
+					id:email_field
+					text:''
+		    		hint_text: "Enter Email  "
+		    		mode: "rectangle"		    	
+		    		size_hint_x:0.85
+		    		pos_hint:{'center_x':0.5,'center_y':0.35}
+		    		line_color_normal:0,0,0,1    				    		
+		    		current_hint_text_color: (190.0/255.0, 190.0/255.0, 190.0/255.0,1) 	    				    	
+		    		color_mode: 'custom'		    		
+		    		multiline: False			
+		    		line_anim:True    
+	       		 line_color_focus: (213.0/255.0,152.0/255.0,250.0/255.0,255.0/255.0) if email_field.focus==True else (0,0,0,0.4)	        							    							    						
+												
+				
+				MagicButton:
+					markup:True
+					text: f'{" "*int(dp(3))}[b]Update Profile[/b]{" "*int(dp(3))}'     															
+					font_size:"10sp"
+					md_bg_color:(180.0/255.0,104.0/255.0,238.0/255.0,1)        		
+					size_hint_y:0.13			
+					pos_hint:{'center_x':0.5,'center_y':0.15}	
+					on_release:root.loading()
+  
+					
+<Password_Screen>:
+	name:'password_screen'	
+	on_enter:
+		root.anim1(second_layout)
+		root.anim2(label)
+		root.anim3(actionbtn)
+		root.keyboard()
+	MDFloatLayout:		
+		MDFloatLayout:
+			id:second_layout
+			size_hint_y:0.6			
+			pos_hint:{'center_y':1.8}
+			radius:[0,0,0,40]
+			canvas:
+				Color:
+					rgba:(180.0/255.0,104.0/255.0,238.0/255.0,1)
+				Ellipse:
+					size:self.size
+					pos:self.pos
+		MDFloatingActionButton:
+			id:actionbtn
+			icon:'keyboard-backspace'
+			pos_hint:{'x':0,'center_y':0.96}
+			md_bg_color:(180.0/255.0,104.0/255.0,238.0/255.0,1)
+			user_font_size: "23sp"	
+			elevation_normal: 0
+			opacity:0
+			on_press:root.manager.current='main_screen'	
+		MDLabel:
+			id:label
+			markup:True
+			text:'[b]Change Password[/b]'
+			font_style:'H5'	
+			halign:'center'
+			markup:True
+			theme_text_color:'Custom'
+			text_color:1,1,1,1
+			pos_hint:{'center_y':0.85}
+			opacity:0
+	
+		MDCard:			
+			id:card1
+			orientation: "vertical"
+			size_hint:0.9,0.4
+			pos_hint:{'center_x':0.5,'center_y':0.48}
+			radius:[dp(40),dp(40),40,40]	
+			elevation:15
+			opacity:1			
+			MDFloatLayout:			
+				MDLabel:
+					text:f'{" "*int(dp(2))}Enter your registered email id & we will  send you a password reset email'
+					font_style:'Subtitle1'
+					pos_hint:{'center_y':0.8}
+					halign:'center'
+					theme_text_color:'Custom'
+					text_color:(0, 0,0,1) if app.theme_cls.theme_style=='Light' else (1,1,1,1)			
+				MDTextField:
+					id:email_pass
+		    		hint_text: "Enter Email  "
+		    		mode: "rectangle"
+		    		size_hint_x:0.85
+		    		pos_hint:{'center_x':0.5,'center_y':0.6}
+		    		radius:[20,20,20,20]
+		    		current_hint_text_color: 190.0/255.0, 190.0/255.0, 190.0/255.0,1    	    				    	
+		    		color_mode: 'custom'
+		    		multiline: False	    			
+		    		line_anim:True    
+	       		 line_color_focus: (213.0/255.0,152.0/255.0,250.0/255.0,255.0/255.0)              				        							    							    						
+				MagicButton:
+					markup:True
+					text: f'{" "*int(dp(4))}[b]Reset Password[/b]{" "*int(dp(4))}'     															
+					font_size:"10sp"
+					md_bg_color:(180.0/255.0,104.0/255.0,238.0/255.0,1)        		
+					size_hint_y:0.2   			
+					pos_hint:{'center_x':0.5,'center_y':0.3}	
+					on_release:root.password_change()			
+    					
+    							
+    									
+    													
+<Contact_Screen>:
+	name:'contact_screen'
+	on_enter:
+		root.anim1(second_layout)
+		root.anim2(label)
+		root.anim3(actionbtn)
+		root.keyboard()
+	MDFloatLayout:		
+		MDFloatLayout:
+			id:second_layout
+			size_hint_y:0.6			
+			pos_hint:{'center_y':1.8}
+			radius:[0,0,0,40]
+			canvas:
+				Color:
+					rgba:(180.0/255.0,104.0/255.0,238.0/255.0,1)
+				Ellipse:
+					size:self.size
+					pos:self.pos
+		MDFloatingActionButton:
+			id:actionbtn
+			icon:'keyboard-backspace'
+			pos_hint:{'x':0,'center_y':0.96}
+			md_bg_color:(180.0/255.0,104.0/255.0,238.0/255.0,1)
+			user_font_size: "23sp"	
+			elevation_normal: 0
+			opacity:0
+			on_press:root.manager.current='main_screen'	
+		MDLabel:
+			id:label
+			markup:True
+			text:'[b]Contact Us[/b]'
+			font_style:'H5'	
+			halign:'center'
+			markup:True
+			theme_text_color:'Custom'
+			text_color:1,1,1,1
+			pos_hint:{'center_y':0.85}
+			opacity:0
+		MDCard:			
+			id:card1
+			orientation: "vertical"
+			size_hint:0.95,0.6
+			pos_hint:{'center_x':0.5,'center_y':0.38}
+			radius:[dp(40),dp(40),40,40]	
+			elevation:15
+			opacity:1
+			border_radius: 20			
+			MDFloatLayout:	
+			
+				MDLabel:
+					text:f'{" "*int(dp(2))}Send Your Questions and Suggestions here'
+					font_style:'Subtitle1'
+					pos_hint:{'center_y':0.88}
+					halign:'center'
+					theme_text_color:'Custom'
+					text_color:(0, 0,0,1) if app.theme_cls.theme_style=='Light' else (1,1,1,1)			
+				MDTextField:
+					id:sub_field
+		    		hint_text: "Subject  "
+		    		mode: "rectangle"
+		    		focus:False
+		    		size_hint_x:0.85
+		    		pos_hint:{'center_x':0.5,'center_y':0.77}
+		    		line_color_normal:0,0,0,1    				    		
+		    		current_hint_text_color: 190.0/255.0, 190.0/255.0, 190.0/255.0,1    	    				    	
+		    		color_mode: 'custom'
+		    		multiline: False			
+		    		line_anim:True    
+	       		 line_color_focus: (213.0/255.0,152.0/255.0,250.0/255.0,255.0/255.0) if sub_field.focus==True else (0,0,0,0.4)	        							    							    						
+				
+	       	 MDTextField:
+	       	 	id:body_field
+		    		hint_text: "Message  "
+		    		mode: "rectangle"
+		    		size_hint:0.85,0.4
+		    		
+		    		pos_hint:{'center_x':0.5,'center_y':0.47}
+		    		focus:False
+		    		line_color_normal:0,0,0,1    				    		
+		    		current_hint_text_color: 190.0/255.0, 190.0/255.0, 190.0/255.0,1    	    				    	
+		    		color_mode: 'custom'
+		    		multiline: True   			
+		    		line_anim:True    
+	       		 line_color_focus: (213.0/255.0,152.0/255.0,250.0/255.0,255.0/255.0) if body_field.focus==True else (0,0,0,0.4)	        							    							    						
+				
+				MagicButton:
+					markup:True
+					text: f'{" "*int(dp(3))}[b]Send[/b]{" "*int(dp(3))}'     															
+					font_size:"10sp"
+					md_bg_color:(180.0/255.0,104.0/255.0,238.0/255.0,1)        		
+					size_hint_y:0.13			
+					pos_hint:{'center_x':0.5,'center_y':0.15}	
+					on_release:root.loading()			
+        		
+	
+    					
+<About_Screen>:
+	name:'about_screen'	
+	on_enter:root.keyboard()
+	MDFloatLayout:
+		padding_y:'dp346'
+		MDBoxLayout:
+			orientation:'vertical'	
+			MDToolbar:
+				title:'about'
+				left_action_items:[["keyboard-backspace",lambda x: root.back_main() ]]             
+        	    elevation:13
+        	
+			BoxLayout:
+				id:box
+				orientation:'vertical'
+				Image:
+					id:gif
+					source:'thank you.zip'
+					allow_stretch:True
+					size_hint:None,None
+					size:box.size[0],gif.size[1]
+					#anim_delay:-1
+	#				anim_loop:1
+				ScrollView:
+					GridLayout:
+						cols:1
+						size_hint_y:None
+						height:self.minimum_height
+						MDLabel:
+							markup:True
+							text:'[b]Thanks For Downloading Earn Coin[/b]'
+							font_style:'H4'
+							text_size: self.width, None
+	                        size_hint_y: None
+	                        height: self.texture_size[1]
+	                        markup:True
+	                        halign:'center'
+	                        theme_text_color:'Custom'
+	                        text_color:(0,0,0,1) if app.theme_cls.theme_style=='Light' else (1,1,1,1)
+	                        
+	                    MDLabel:
+							markup:True
+							text:' '
+							font_style:'Caption'
+							text_size: self.width, None
+	                        size_hint_y: None
+	                        height: self.texture_size[1]
+	                        markup:True
+	                        halign:'center' 
+	                    MDLabel:
+							markup:True
+							text:'[b]Developed by AKKayal[/b]'
+							font_style:'H5'
+							text_size: self.width, None
+	                        size_hint_y: None
+	                        height: self.texture_size[1]
+	                        markup:True
+	                        halign:'center'
+	                        theme_text_color:'Custom'
+	                        text_color:(0,0,0,1) if app.theme_cls.theme_style=='Light' else (1,1,1,1)
+	                        
+	                    MDLabel:
+							markup:True
+							text:' '
+							font_style:'H5'
+							text_size: self.width, None
+	                        size_hint_y: None
+	                        height: self.texture_size[1]
+	                        markup:True
+	                        halign:'center'
+	                    MDSeparator:
+	                    MDLabel:
+	                    	markup:True
+							text:'Contact me'
+							font_style:'H5'
+							text_size: self.width, None
+	                        size_hint_y: None
+	                        height: self.texture_size[1]
+	                        markup:True
+	                        halign:'center'
+	                        theme_text_color:'Custom'
+	                        text_color:(0,0,0,1) if app.theme_cls.theme_style=='Light' else (1,1,1,1)
+	                        
+	                      
+	                    	
+	                    
+	                    MDGridLayout:
+	                    	cols:3
+	                    	size_hint_y: None
+                            height: self.minimum_height                                                       
+                                                                                                                     
+                            MDIconButton:
+                                on_release:root.facebook()
+                                icon: 'facebook'      
+                                theme_text_color:'Custom'             
+                                text_color: (24.0/255.0, 119.0/255.0, 242.0/255.0, 1)
+        				        user_font_size:'44sp'  
+        				    MDIconButton:
+                                on_release:root.whatsapp()
+                                icon: 'whatsapp'           
+                                theme_text_color:'Custom'             
+                                text_color: (71.0/255.0, 199.0/255.0, 86.0/255.0, 1)
+        				        user_font_size:'44sp'  
+        				    MDIconButton:
+                                on_release:root.gmail()
+                                icon: 'gmail'     
+                                theme_text_color:'Custom'             
+                                text_color: 220.0/255.0, 76.0/255.0, 65.0/255.0, 1                                             
+        				        user_font_size:'44sp'  
+        				    MDIconButton:
+                                on_release:root.youtube()
+                                icon: 'youtube'         
+                                theme_text_color:'Custom'             
+                                text_color: 1,0,0,1                                                     
+        				        user_font_size:'44sp'  
+        				    MDIconButton:
+                                on_release:root.github()
+                                icon: 'github-circle'         
+                                theme_text_color:'Custom'             
+                                text_color: 0,0,0,1                                              
+        				        user_font_size:'44sp'  
+        				    MDIconButton:
+                                on_release:root.web()
+                                icon: 'web'         
+                                theme_text_color:'Custom'             
+                                text_color: 190.0/255.0, 190.0/255.0, 190.0/255.0,1                                      
+        				        user_font_size:'44sp'  
+	                       
+	                     
+<Reffer_Screen>:
+	name:'reffer_screen'
+	on_enter:
+		root.keyboard()
+		root.add_reffer()
+	MDBoxLayout:
+		orientation:'vertical'	
+		MDToolbar:
+			title:'Invite Friends'
+			left_action_items:[["keyboard-backspace",lambda x: root.back_main() ]]             
+        	elevation:13
+        MDFloatLayout:    
+        	md_bg_color:230.0/255.0, 231.0/255.0, 234.0/255.0,1	    		
+        	  
+	        MDCard:
+	        	canvas:
+	        		RoundedRectangle:
+	        			size:self.size
+	        			pos:self.pos
+	        			radius:[20,]
+	        			source:'invite-friends.jpg'			       																				
+					
+	        	md_bg_color:230.0/255.0, 231.0/255.0, 234.0/255.0,1				
+	        	border_radius: 20
+			
+				ripple_behavior: False
+				orientation: "vertical"
+				size_hint: None, None
+				size: "320dp", "230dp"																				
+				elevation:0
+				opacity:1	
+				pos_hint:{'center_x':0.5,'top':0.98}
+				       		
+										
+			MDCard:
+				id:reffer_text
+		    	md_bg_color:1,1,1,1		
+		        border_radius: 20
+				radius:[20,]
+				ripple_behavior: False
+				orientation: "vertical"
+				size_hint: None, None
+				size: "320dp", "100dp"																				
+				elevation:0
+				opacity:1	
+				pos_hint:{'center_x':0.5,'y':0.4}
+				BoxLayout:
+					orientation:'horizontal'
+					pos_hint:{'center_y':0.5}
+					MDIcon:
+						icon:'wallet'
+						size_hint:None,None
+						size:self.size
+						theme_text_color:'Custom'
+						text_color: 110.0/255.0, 74.0/255.0, 194.0/255.0, 1 
+						halign:'center'
+						height:200
+							
+					MDLabel:						
+						text:'Reffer a friend and earn upto 500 coin .Your friend also get upto 500 coin as Sign Up bonus'
+						halign:'left'
+						font_style:'Subtitle1'
+					
+			MDLabel:
+				text:'Reffer & Win'					
+				halign:'center'
+				font_style:'H6'
+				bold:True
+				pos_hint:{'center_y':0.36}
+			MDLabel:
+				text:'Your Referral Code'					
+				halign:'center'							
+				pos_hint:{'center_y':0.3}
+			MDTextFieldRound:
+				
+				id:text_field	
+				text:'please wait'		
+				font_size:'20sp'
+				size_hint_x:0.4	
+				disabled:False	
+				allow_copy: True
+            	
+
+				pos_hint:{'center_x':0.5,'center_y':0.24}
+
+			MDIconButton:
+				icon:'content-copy'
+				ripple_scale: .5
+		        pos_hint: {"center_y": .24}																
+		        pos: text_field.width - self.width +100+ dp(75), 0
+     		   on_release:root.copy()
+			MDFillRoundFlatIconButton:
+				icon: "share-variant"
+				markup:True
+				text: f'{" "*int(dp(3))}Invite{" "*int(dp(3))}'     															
+				font_size:"8sp"
+				md_bg_color:(180.0/255.0,104.0/255.0,238.0/255.0,1)        		
+				size_hint_y:0.089		
+				pos_hint:{'center_x':0.5,'center_y':0.15}	
+				on_release:root.share_func()																			
+																	
+											
+	
